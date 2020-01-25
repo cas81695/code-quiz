@@ -1,25 +1,11 @@
-// the variable refers back to the home page
-
-var quizContent = `
-
-    <h1>How well do you know Coding?</h1>
-    
-    <p> You will have 75 seconds to complete 5 question (each worth 20 points) that will test your knowledge of Coding.
-    Click the start button at the bottom of the page to start the quiz.</p>
-    <p> If the answer you select is incorrect, then the timer will decrease 15 seconds</p>
-
-    <button onclick="start()">Start!</button>`;
-
-    document.getElementById("quizBody").innerHTML = quizContent;
-;
-
-
 // These variables are for the functions of the quiz such as the timer, score, seconds in the timer
 
-
 var score = 0;
+
 var currentQuestion = -1;
+
 var secondsLeft = 0;
+
 var timer;
 
 //This starts the timer once user clicks the 'start' button at 75 seconds
@@ -105,18 +91,19 @@ function restartQuiz() {
 
     document.getElementById("secondsLeft").innerHTML = secondsLeft;
 
-    var quizContent = `
+    // the variable refers back to the home page
+        var quizContent = `
 
-    <h1>How well do you know Coding?</h1>
-    
-    <p> You will have 75 seconds to complete 5 question (each worth 20 points) that will test your knowledge of Coding.
-    Click the start button at the bottom of the page to start the quiz.</p>
-    <p> If the answer you select is incorrect, then the timer will decrease 15 seconds</p>
+        <h1>How well do you know Coding?</h1>
 
-    <button onclick="start()">Start!</button>`;
+        <p> You will have 75 seconds to complete 5 question (each worth 20 points) that will test your knowledge of Coding.
+        Click the start button at the bottom of the page to start the quiz.</p>
+        <p> If the answer you select is incorrect, then the timer will decrease 15 seconds</p>
 
-    document.getElementById("quizBody").innerHTML = quizContent;
-}
+        <button onclick="start()">Start!</button>`;
+
+        document.getElementById("quizBody").innerHTML = quizContent;
+    ;
    
 //removes 15 seconds from the timer if player picks the wrong answer
 function incorrect() {
@@ -152,7 +139,5 @@ function next() {
         }
         quizContent += playerPick
     }
-
-
     document.getElementById("quizBody").innerHTML = quizContent;
 }

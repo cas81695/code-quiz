@@ -5,43 +5,40 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="style.css" rel="stylesheet" type="text/css">
-        
         <script src = "quiz.js" type="text/javascript"></script>
+        <script src = "questions.js" type="text/javascript"></script>
 
         <title>Code Quiz</title>
 
 	</head>
 	<body>
-        <header>
-			<div class="left">
-                <a onclick="getScore()" href="#"><h7 >HighScores</h7></a>
-			</div>
-			<div class="right">
-				<h7>Time: <span id="secondsLeft">0</span></h7>
-        </header>
+        <div id="nav">
+            <div class="row mx-auto">
+			    <div class="left">
+                 <a onclick="getScore()" href="#"><h4 >Highscores</h4></a>
+			    </div>
+			    <div class="right">
+				<h4>Time: <span id="timeLeft">0</span></h4>
+                </div>
+            </div>
 
         <!-- The Quiz -->
 
     <div class="container col-lg-8 col-md-8 col-sm-8 mx-auto">
-		<div id="quiz">
-            <div id="quizBody"> 
-                <div class="jumbotron">     
-                <h1>   
-                    How well do you know coding?
-                </h1>
-                     <p>
-                        You will have 75 seconds to complete 5 questions that will test your knowledge of Coding.
+		    <div id="quiz">
+                 <div id="quizBody">      
+                     <h1>How well do you know coding?</h1>
+                     <p>You will have 75 seconds to complete 5 questions that will test your knowledge of Coding.
                         Click the start button at the bottom of the page to start the quiz.</p>
                         <br>
-                        <p> Note: If the answer you select is incorrect, then the timer will decrease 15 seconds
-                    </p>
+                        <p> Note: If the answer you select is incorrect, then the timer will decrease 15 seconds</p>
+                        <br>
+                        <br>
                  <button onclick="start()">Start!</button>
                 </div>
             </div>
         </div>
     </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 	</body>
 </html>
