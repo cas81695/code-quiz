@@ -1,8 +1,9 @@
+
 var questions = [
     {
         title: "What tag defines the body of the HTML document, and ususallyincludes all the contents such as the text, hyperlinks, images, tables, lists, and more?",
-        choices: ["<body></body>", "<title></title>", "<head></head>", "<footer></footer>"],
-        answer: "<body></body>"  
+        choices: ["Body", "Title", "Head", "Footer"],
+        answer: "Body"  
     },
     {
         title: "In JavaScript, what is used in conjunction with HTML to “react” to certain elements?",
@@ -21,7 +22,7 @@ var questions = [
     },
     {
         title: "Every HTML page must include a reference to the external file sheet file inside the ____ element.",
-        choices: ["Link", "Body", "<div>", "Footer"],
+        choices: ["Link", "Body", "Div", "Footer"],
         answer: "Link"
     },
     ];

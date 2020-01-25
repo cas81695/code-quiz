@@ -1,23 +1,24 @@
 // These variables are for the functions of the quiz such as the timer, score, seconds in the timer
 
+var timer;
+
+var secondsLeft = 0;
+
 var score = 0;
 
 var currentQuestion = -1;
 
-var secondsLeft = 0;
-
-var timer;
-
 //This starts the timer once user clicks the 'start' button at 75 seconds
 
-function startTimer() {
+function start() {
 
     secondsLeft = 75;
 
-    document.getElementById("secondsleft").innerHTML = secondsLeft;
+    document.getElementById("secondsLeft").innerHTML = secondsLeft;
 
     timer = setInterval(function() {
         secondsLeft--;
+
         document.getElementById("secondsLeft").innerHTML = secondsLeft;
         //this ends the quiz when timer is below 0 at any time
         if (secondsLeft <= 0) {
@@ -30,14 +31,41 @@ function startTimer() {
 }
 
 
+//This loops through the questions 
+function next() {
+    currentQuestion++;
+
+    if (currentQuestion > questions.length - 1) {
+        finishQuiz();
+        return;
+    }
+
+    var quizContent = "<h4>" + questions[currentQuestion].title + "</h4>"
+// this indicates what
+    for (var questionLoop = 0; questionLoop < questions[currentQuestion].choices.length; questionLoop++) {
+
+        var playersPick = "<button onclick=\"[Answer]\">[CHOICE]</button>"; 
+        playersPick = playersPick.replace("[CHOICE]", questions[currentQuestion].choices[questionLoop]);
+
+        if (questions[currentQuestion].choices[questionLoop] == questions[currentQuestion].answer) {
+            playersPick = playersPick.replace("[Answer]", "correct()");
+        } else {
+            playersPick = playersPick.replace("[Answer]", "incorrect()");
+        }
+        quizContent += playersPick
+    }
+    document.getElementById("quizBody").innerHTML = quizContent
+}
+
 //The timer stops when the quiz is finished
 
 function finishQuiz() {
     clearInterval(timer);
 
     var quizContent = `
-    <h2>Nice Job, you finished the quiz</h2>
-    <h3>You got a ` + score + ` </h3>
+    <h5>Nice Job, you finished the quiz</h5>
+
+    <h6>You got a ` + score + ` </h6>
 
     <input type="text" id="name" placeholder="intials"> 
 
@@ -103,11 +131,11 @@ function restartQuiz() {
         <button onclick="start()">Start!</button>`;
 
         document.getElementById("quizBody").innerHTML = quizContent;
-    ;
+}
    
 //removes 15 seconds from the timer if player picks the wrong answer
 function incorrect() {
-    timeLeft -= 15; 
+    secondsLeft -= 15; 
     next();
     // the quiz will move on to the next question after timer removal
 }
@@ -116,28 +144,4 @@ function incorrect() {
 function correct() {
     score += 20;
     next();
-}
-
-//This loops through the questions 
-function next() {
-    currentQuestion++;
-
-    if (currentQuestion > questions.length - 1) {
-        finishQuiz();
-        return;
-    }
-
-    var quizContent = "<h4>" + questions[currentQuestion].title + "</h4>"
-// this indicates what
-    for (var questionLoop = 0; questionLoop < questions[currentQuestion].choices.length; questionLoop++) {
-        var playerPick = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
-        playerPick = playerPick.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
-        if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
-            playerPick = playerPick.replace("[ANS]", "correct()");
-        } else {
-            playerPick = playerPick.replace("[ANS]", "incorrect()");
-        }
-        quizContent += playerPick
-    }
-    document.getElementById("quizBody").innerHTML = quizContent;
 }
