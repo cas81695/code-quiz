@@ -44,8 +44,8 @@ function next() {
 // this indicates what
     for (var questionLoop = 0; questionLoop < questions[currentQuestion].choices.length; questionLoop++) {
 
-        var playersPick = "<button onclick=\"[Answer]\">[CHOICE]</button>"; 
-        playersPick = playersPick.replace("[CHOICE]", questions[currentQuestion].choices[questionLoop]);
+        var playersPick = "<button onclick=\"[Answer]\">[Choice]</button>"; 
+        playersPick = playersPick.replace("[Choice", questions[currentQuestion].choices[questionLoop]);
 
         if (questions[currentQuestion].choices[questionLoop] == questions[currentQuestion].answer) {
             playersPick = playersPick.replace("[Answer]", "correct()");
@@ -57,9 +57,24 @@ function next() {
     document.getElementById("quizBody").innerHTML = quizContent
 }
 
+   
+//removes 15 seconds from the timer if player picks the wrong answer
+function incorrect() {
+    secondsLeft -= 15; 
+    next();
+    // the quiz will move on to the next question after timer removal
+}
+
+//increases the score by 20 points if the player picks the correct answer
+function correct() {
+    score += 20;
+    next();
+}
+
 //The timer stops when the quiz is finished
 
 function finishQuiz() {
+
     clearInterval(timer);
 
     var quizContent = `
@@ -91,7 +106,7 @@ function displayScore() {
     <h2>` + localStorage.getItem("playerName") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
     
-    <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
+    <button onclick="clearScore()">Clear score</button><button onclick="resetQuiz()">Start again</button>
     
     `;
 
@@ -112,10 +127,14 @@ function removeScore() {
 // this restarts the quiz for the player 
 function restartQuiz() {
     clearInterval(timer);
-    score = 0;
-    currentQuestion = -1;
-    secondsLeft = 0;
     timer = null;
+
+    secondsLeft = 0;
+
+    score = 0;
+
+    currentQuestion = -1;
+  
 
     document.getElementById("secondsLeft").innerHTML = secondsLeft;
 
@@ -132,16 +151,4 @@ function restartQuiz() {
 
         document.getElementById("quizBody").innerHTML = quizContent;
 }
-   
-//removes 15 seconds from the timer if player picks the wrong answer
-function incorrect() {
-    secondsLeft -= 15; 
-    next();
-    // the quiz will move on to the next question after timer removal
-}
 
-//increases the score by 20 points if the player picks the correct answer
-function correct() {
-    score += 20;
-    next();
-}
