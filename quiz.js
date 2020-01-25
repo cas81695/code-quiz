@@ -11,7 +11,7 @@ var quizContent = `
     <button onclick="start()">Start!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
-}
+;
 
 
 // These variables are for the functions of the quiz such as the timer, score, seconds in the timer
