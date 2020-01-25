@@ -33,6 +33,7 @@ function start() {
 
 //This loops through the questions 
 function next() {
+
     currentQuestion++;
 
     if (currentQuestion > questions.length - 1) {
@@ -40,23 +41,29 @@ function next() {
         return;
     }
 
-    var quizContent = "<h4>" + questions[currentQuestion].title + "</h4>"
+    var quizInfo = "<h4>" + questions[currentQuestion].title + "</h4>"
 // this indicates what
     for (var questionLoop = 0; questionLoop < questions[currentQuestion].choices.length; questionLoop++) {
 
-        var playersPick = "<button onclick=\"[Answer]\">[Choice]</button>"; 
-        playersPick = playersPick.replace("[Choice", questions[currentQuestion].choices[questionLoop]);
+        var playerPick = "<button onclick=\"[Answer]\">[Choice]</button>"; 
+        playerPick = playerPick.replace("[Choice", questions[currentQuestion].choices[questionLoop]);
 
         if (questions[currentQuestion].choices[questionLoop] == questions[currentQuestion].answer) {
-            playersPick = playersPick.replace("[Answer]", "correct()");
+            playerPick = playerPick.replace("[Answer]", "correct()");
         } else {
-            playersPick = playersPick.replace("[Answer]", "incorrect()");
+            playerPick = playerPick.replace("[Answer]", "incorrect()");
         }
-        quizContent += playersPick
+        quizInfo += playerPick
     }
-    document.getElementById("quizBody").innerHTML = quizContent
+    document.getElementById("quizMain").innerHTML = quizInfo
 }
 
+
+//increases the score by 20 points if the player picks the correct answer
+function correct() {
+    score += 20;
+    next();
+}
    
 //removes 15 seconds from the timer if player picks the wrong answer
 function incorrect() {
@@ -65,68 +72,69 @@ function incorrect() {
     // the quiz will move on to the next question after timer removal
 }
 
-//increases the score by 20 points if the player picks the correct answer
-function correct() {
-    score += 20;
-    next();
-}
-
 //The timer stops when the quiz is finished
 
 function finishQuiz() {
 
     clearInterval(timer);
 
-    var quizContent = `
+    var quizInfo = `
     <h5>Nice Job, you finished the quiz</h5>
 
     <h6>You got a ` + score + ` </h6>
 
     <input type="text" id="name" placeholder="intials"> 
 
-    <button onclick="setScore()">Set score!</button>`;
+    <button onclick = "setScore()" >Set score!</button>`;
 
-    document.getElementById("quizBody").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizInfo;
 }
 
 //This stores the scores on a local storage with the player's name
 
-function addScore() {
+function setScore() {
 
+    localStorage.setItem("playerIntials",  document.getElementById('name').value);
+    
     localStorage.setItem("highscore", score);
 
-    localStorage.setItem("playerName",  document.getElementById('name').value);
-    
-    getScore();
+    displayScore();
 }
 
 
 function displayScore() {
-    var quizContent = `
-    <h2>` + localStorage.getItem("playerName") + `'s highscore is:</h2>
-    <h1>` + localStorage.getItem("highscore") + `</h1><br> 
-    
-    <button onclick="clearScore()">Clear score</button><button onclick="resetQuiz()">Start again</button>
-    
-    `;
+    var quizInfo = ` 
 
-    document.getElementById("quizBody").innerHTML = quizContent;
+    <h5>` + localStorage.getItem("playerIntials") + `'s highscore is:</h5>
+
+    <h6>` + localStorage.getItem("highscore") + `</h6> 
+
+    <br>
+    
+    
+    <button onclick = "clearScore()" >Clear score</button><button onclick = "restartQuiz()" >Start again</button>`;
+
+    document.getElementById("quizMain").innerHTML = quizInfo;
 }
 
 // This clears the players name and value if the player selects 'remove score'
 
-function removeScore() {
+function clearScore() {
+
+    localStorage.setItem("playerIntials",  "");
 
     localStorage.setItem("highscore", "");
 
-    localStorage.setItem("playerName",  "");
 
     restartQuiz();
 }
 
 // this restarts the quiz for the player 
+
 function restartQuiz() {
+    
     clearInterval(timer);
+
     timer = null;
 
     secondsLeft = 0;
@@ -139,7 +147,7 @@ function restartQuiz() {
     document.getElementById("secondsLeft").innerHTML = secondsLeft;
 
     // the variable refers back to the home page
-        var quizContent = `
+        var quizInfo = `
 
         <h1>How well do you know Coding?</h1>
 
@@ -149,6 +157,6 @@ function restartQuiz() {
 
         <button onclick="start()">Start!</button>`;
 
-        document.getElementById("quizBody").innerHTML = quizContent;
+        document.getElementById("quizMain").innerHTML = quizInfo;
 }
 
