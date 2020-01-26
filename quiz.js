@@ -98,11 +98,11 @@ function setScore() {
     
     localStorage.setItem("highscore", score);
 
-    displayScore();
+    getScore();
 }
 
 
-function displayScore() {
+function getScore() {
 
     var quizInfo = `  
 

@@ -2,16 +2,18 @@
 #nav {
     display: block;
     background-color: purple;
+    width: 99vw;
+    border: 2px solid yellow;
+    border-radius: 7px;
+    margin: 2px;
     display: inline-block;
-    width: 98vw;
-    border: 3px solid yellow;
-    border-radius: 5px;
-    margin: 6px;
+
 }
+
 
 header {
     background-color: purple;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 
@@ -28,7 +30,7 @@ body {
 }
 
 button:hover {
-    transition-duration: 0.4s;
+    transition-duration: 0.5s;
     background-color: yellow;
 }
 
@@ -51,11 +53,17 @@ button {
 
 h4 {
     color: white;
+    float: left;
+    font-size: 27px;
+    padding-right: 100px;
+    padding-top: 4px;
 }
 
 h8 {
     color: white;
-    
+    font-size: 27px;
+    padding-left: 100px;
+
 }
 
 a {
@@ -69,12 +77,4 @@ span {
 
 #quiz {
     text-align: center;
-}
-
-.right {
-    float: right;
-}
-
-.left {
-    float: left;
 }
