@@ -41,7 +41,7 @@ function next() {
         return;
     }
 
-    var quizInfo = "<h4>" + questions[currentQuestion].title + "</h4>"
+    var quizInfo = "<h5>" + questions[currentQuestion].title + "</h5>"
 // this indicates what
     for (var questionLoop = 0; questionLoop < questions[currentQuestion].choices.length; questionLoop++) {
 
@@ -103,21 +103,24 @@ function setScore() {
 
 
 function displayScore() {
-    var quizInfo = ` 
 
-    <h5>` + localStorage.getItem("playerIntials") + `'s highscore is:</h5>
+    var quizInfo = `  
+
+    <h5>` + localStorage.getItem("playerIntials") + ` highest score is:</h5>
 
     <h6>` + localStorage.getItem("highscore") + `</h6> 
 
     <br>
     
     
-    <button onclick = "clearScore()" >Clear score</button><button onclick = "restartQuiz()" >Start again</button>`;
+    <button onclick = "clearScore()" >Clear score</button><button onclick = "restartQuiz()" >Start again</button>
+    
+    `;
 
     document.getElementById("quizMain").innerHTML = quizInfo;
-}
+};
 
-// This clears the players name and value if the player selects 'remove score'
+// This clears the players name and value if the player selects remove score'
 
 function clearScore() {
 
@@ -135,6 +138,7 @@ function restartQuiz() {
     
     clearInterval(timer);
 
+
     timer = null;
 
     secondsLeft = 0;
@@ -145,8 +149,8 @@ function restartQuiz() {
   
 
     document.getElementById("secondsLeft").innerHTML = secondsLeft;
-
     // the variable refers back to the home page
+
         var quizInfo = `
 
         <h1>How well do you know Coding?</h1>
@@ -155,7 +159,7 @@ function restartQuiz() {
         Click the start button at the bottom of the page to start the quiz.</p>
         <p> If the answer you select is incorrect, then the timer will decrease 15 seconds</p>
 
-        <button onclick="start()">Start!</button>`;
+        <button onclick ="start()">Start!</button>`;
 
         document.getElementById("quizMain").innerHTML = quizInfo;
 }

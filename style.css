@@ -1,16 +1,17 @@
 
 #nav {
     display: block;
-    background-color: whitesmoke;
+    background-color: purple;
     display: inline-block;
     width: 98vw;
-    border: 3px solid purple;
+    border: 3px solid yellow;
     border-radius: 5px;
     margin: 6px;
 }
 
 header {
     background-color: purple;
+    margin-bottom: 5px;
 }
 
 
@@ -48,22 +49,32 @@ button {
     background-color: silver;
 }
 
-h7 {
-    padding: 11px 9px 11px 9px;
+h4 {
+    color: white;
+}
+
+h8 {
+    color: white;
+    
 }
 
 a {
     text-decoration: none;
-    color: black;
-    float: left;
 }
 
 span {
     text-decoration: none;
-    color: black;
-    float: right;
 }
+
 
 #quiz {
     text-align: center;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
 }
